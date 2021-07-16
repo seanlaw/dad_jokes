@@ -1,7 +1,7 @@
 #!/bin/sh
 
 MS_TEAMS_WEBHOOK="$1"
-BEARER_TOKEN="$2"
+export 'BEARER_TOKEN'="$2"
 HOSTNAME="Github Actions"
 #DAD_JOKE=`python3 get_dad_jokes.py 2> /dev/null`
 DAD_JOKE=`python3 get_dad_jokes.py`
