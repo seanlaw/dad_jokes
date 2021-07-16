@@ -4,7 +4,7 @@ on:
   repository_dispatch:
     types: [run_dad_joke]
 jobs:
-  get_stumpy_stats:
+  get_dad_jokes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -14,8 +14,8 @@ jobs:
           python-version: "3.8"
       - name: Install Requirements
         run: pip install -r requirements.txt
-      - name: Retrieve STUMPY Stats
-        run: bash github.sh ${WEBHOOK}
+      - name: Retrieve Dad Jokes
+        run: bash github.sh ${WEBHOOK} ${BEARER_TOKEN}
         shell: bash
         env:
           WEBHOOK: ${{ secrets.MS_TEAMS_WEBHOOK}}
