@@ -8,7 +8,6 @@ from datetime import datetime
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
 bearer_token = os.environ.get("BEARER_TOKEN")
-print(bearer_token)
 
 
 def create_url():
@@ -59,6 +58,7 @@ def main():
     today = datetime.today()
     print(f"Date: {today.date()}")
     print("----------")
+    print(json_response['data'])
     for tweet in json_response['data']:
         created_at = datetime.strptime(tweet['created_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
         if created_at.date() == today.date():
