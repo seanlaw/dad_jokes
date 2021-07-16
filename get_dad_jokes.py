@@ -61,11 +61,11 @@ def main():
     for tweet in json_response['data']:
         created_at = datetime.strptime(tweet['created_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
         if created_at.date() == today.date():
+            print("----------")
             print("HERE")
-        #    print("----------")
         #    print(tweet['text'])
-        #    print("----------")
-        #    print()
+            print("----------")
+            print()
 
 
 if __name__ == "__main__":
