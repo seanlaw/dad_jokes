@@ -58,7 +58,6 @@ def main():
     today = datetime.today()
     print(f"Date: {today.date()}")
     print("----------")
-    print(json_response['data'])
     for tweet in json_response['data']:
         created_at = datetime.strptime(tweet['created_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
         if created_at.date() == today.date():
