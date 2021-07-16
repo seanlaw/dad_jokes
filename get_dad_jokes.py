@@ -4,6 +4,7 @@ import requests
 import os
 import json
 from datetime import datetime
+import re
 
 # To set your environment variables in your terminal run the following line:
 # export 'BEARER_TOKEN'='<your_bearer_token>'
@@ -63,8 +64,10 @@ def main():
         if created_at.date() == today.date():
             print("----------")
             text = tweet['text']
+            #text = text.replace("'", '')
             text = text.replace('"', '')
-            text = text.replace('"', '')
+            text = re.sub(u'\u201c','', text)
+            text = re.sub(u'\u201d','', text)
             print(text)
             print("----------")
             print()
