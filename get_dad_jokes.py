@@ -58,18 +58,18 @@ def main():
 
     today = datetime.today()
     print(f"Date: {today.date()}")
-    print("---")
+    print("___")
     for tweet in json_response['data']:
         created_at = datetime.strptime(tweet['created_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
         if created_at.date() == today.date():
-            print("---")
+            print("___")
             text = tweet['text']
             #text = text.replace("'", '')
             text = text.replace('"', '')
             text = re.sub(u'\u201c','', text)
             text = re.sub(u'\u201d','', text)
             print(text)
-            print("---")
+            print("___")
             print()
 
 
