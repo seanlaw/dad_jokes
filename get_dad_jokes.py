@@ -64,7 +64,7 @@ def main():
             #print("----------")
             text = tweet['text']
             text = text.replace('"', '')
-            text = tweet.replace('"', '')
+            text = text.replace('"', '')
             print(text)
             #print("----------")
             print()
