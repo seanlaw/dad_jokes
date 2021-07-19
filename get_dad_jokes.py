@@ -69,8 +69,8 @@ def main():
     # print(json.dumps(json_response, indent=4, sort_keys=True))
 
     today = datetime.today()
-    yesterday = today - timedelta(days=1)
-    two_days_ago = yesterday = today - timedelta(days=2)
+    yesterday = today - datetime.timedelta(days=1)
+    two_days_ago = yesterday = today - datetime.timedelta(days=2)
     print(f"Date: {today.date()}")
     print("___")
     for tweet in json_response["data"]:
