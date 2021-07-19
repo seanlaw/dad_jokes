@@ -3,7 +3,7 @@
 import requests
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 
 # To set your environment variables in your terminal run the following line:
@@ -69,8 +69,8 @@ def main():
     # print(json.dumps(json_response, indent=4, sort_keys=True))
 
     today = datetime.today()
-    yesterday = today - datetime.timedelta(days=1)
-    two_days_ago = yesterday = today - datetime.timedelta(days=2)
+    yesterday = today - timedelta(days=1)
+    two_days_ago = yesterday = today - timedelta(days=2)
     print(f"Date: {today.date()}")
     print("___")
     for tweet in json_response["data"]:
