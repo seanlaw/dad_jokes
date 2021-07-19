@@ -40,7 +40,7 @@ def bearer_oauth(r):
 
 def connect_to_endpoint(url, params):
     response = requests.request("GET", url, auth=bearer_oauth, params=params)
-    #print(response.status_code)
+    # print(response.status_code)
     if response.status_code != 200:
         raise Exception(
             "Request returned an error: {} {}".format(
@@ -50,28 +50,45 @@ def connect_to_endpoint(url, params):
     return response.json()
 
 
+def print_tweet(tweet):
+    print("___")
+    text = tweet["text"]
+    # text = text.replace("'", '')
+    text = text.replace('"', "")
+    text = re.sub("\u201c", "", text)
+    text = re.sub("\u201d", "", text)
+    print(text)
+    print("___")
+    print()
+
+
 def main():
     url = create_url()
     params = get_params()
     json_response = connect_to_endpoint(url, params)
-    #print(json.dumps(json_response, indent=4, sort_keys=True))
+    # print(json.dumps(json_response, indent=4, sort_keys=True))
 
     today = datetime.today()
+    yesterday = today - timedelta(days=1)
+    two_days_ago = yesterday = today - timedelta(days=2)
     print(f"Date: {today.date()}")
     print("___")
-    for tweet in json_response['data']:
-        created_at = datetime.strptime(tweet['created_at'], "%Y-%m-%dT%H:%M:%S.%fZ")
-        if created_at.date() == today.date():
-            print("___")
-            text = tweet['text']
-            #text = text.replace("'", '')
-            text = text.replace('"', '')
-            text = re.sub(u'\u201c','', text)
-            text = re.sub(u'\u201d','', text)
-            print(text)
-            print("___")
-            print()
+    for tweet in json_response["data"]:
+        created_at = datetime.strptime(tweet["created_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+        if today.weekday == 0:  # Monday
+            if (
+                created_at.date() == today.date()
+                or created_at.date() == yesterday.date()
+                or created_at.date() == two_days_ago.date()
+            ):
+                print_tweet(tweet)
+        else:
+            if (
+                created_at.date() == today.date()
+                or created_at.date() == yesterday.date()
+            ):
+                print_tweet(tweet)
 
 
 if __name__ == "__main__":
-    main() 
+    main()
