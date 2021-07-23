@@ -70,7 +70,7 @@ def main():
 
     today = datetime.today()
     yesterday = today - timedelta(days=1)
-    two_days_ago = yesterday = today - timedelta(days=2)
+    two_days_ago = today - timedelta(days=2)
     print(f"Date: {today.date()}")
     print("___")
     for tweet in json_response["data"]:
@@ -81,12 +81,14 @@ def main():
                 or created_at.date() == yesterday.date()
                 or created_at.date() == two_days_ago.date()
             ):
+                print(created_at.date())
                 print_tweet(tweet)
         else:
             if (
                 created_at.date() == today.date()
                 or created_at.date() == yesterday.date()
             ):
+                print(created_at.date())
                 print_tweet(tweet)
 
 
